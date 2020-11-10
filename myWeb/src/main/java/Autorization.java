@@ -15,7 +15,13 @@ public class Autorization extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        Helper.users.add(new User("admin", "admin123"));
+        User user = new User("admin", "admin123");
+        user.setUsername("SuperAdmin");
+        user.setUserage("25");
+        user.setGender("Male");
+        user.setCountry("Belarus");
+        Helper.users.add(user);
+
     }
 
     @Override

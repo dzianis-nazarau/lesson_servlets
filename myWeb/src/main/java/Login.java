@@ -18,8 +18,12 @@ public class Login extends HttpServlet {
 
         if(helper.checkCredo(username, password)) {
             try {
-                writer.println("<h2>Welcome to your page, " + username + "</h2>");
+                Helper.currentUser = helper.getUserInfo(username);
+                writer.println("<h2>Welcome to your page, " + Helper.currentUser.getLogin() + "</h2>");
                 writer.println(Utils.userPage);
+                if(Helper.currentUser.getLogin().equals("admin")) {
+                    writer.println("<p><a href=\"http://localhost:8080/myWeb_war/registration\">Create user</a></p>");
+                }
             } finally {
                 writer.close();
             }

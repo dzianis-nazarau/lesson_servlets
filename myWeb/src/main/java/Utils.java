@@ -31,5 +31,4 @@ public class Utils {
             "</form>";
     final static String userPage =   "        <p><a href=\"http://localhost:8080/myWeb_war/main\">Exit</a></p>" +
             "        <p><a href=\"http://localhost:8080/myWeb_war/information\">Information</a></p>";
-    public static String informationPage = "";
 }

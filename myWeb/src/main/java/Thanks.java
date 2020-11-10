@@ -29,8 +29,15 @@ public class Thanks extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         try {
-            writer.println("<h2>Thanks for registration!</h2>");
-            writer.println(Utils.mainPage);
+            if (Helper.currentUser.getLogin().equals("admin")) {
+                writer.println("<h2>User created</h2>");
+                writer.println("<h2>Welcome to your page, " + Helper.currentUser.getLogin() + "</h2>");
+                writer.println(Utils.userPage);
+                writer.println("<p><a href=\"http://localhost:8080/myWeb_war/registration\">Create user</a></p>");
+            } else {
+                writer.println("<h2>Thanks for registration!</h2>");
+                writer.println(Utils.mainPage);
+            }
         } finally {
             writer.close();
         }
