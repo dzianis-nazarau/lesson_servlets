@@ -4,17 +4,4 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-
-  <servlet>
-    <servlet-name>DenisStart</servlet-name>
-    <servlet-class>Login</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>DenisStart</servlet-name>
-    <url-pattern>/denis</url-pattern>
-  </servlet-mapping>
-
-
-
 </web-app>
