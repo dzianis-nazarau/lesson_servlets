@@ -6,11 +6,10 @@ import java.util.stream.Stream;
 public class Helper {
 
     public static List<User> users = new ArrayList<>();
-
     public static User currentUser;
 
     boolean checkCredo (String user, String password) {
-
+// ti do
         Stream correct = users.stream().filter(person -> person.getPassword().equals(password) && person.getLogin().equals(user));
         if(correct.count() == 1) {
             return true;
@@ -20,10 +19,11 @@ public class Helper {
     }
 
     User getUserInfo(String login) {
-        Optional<User> matchingObject = users.stream().
+        Optional<User> userObject = users.stream().
                 filter(person -> person.getLogin().equals(login)).
                 findFirst();
-        User user = matchingObject.get();
+        //null
+        User user = userObject.get();
         return user;
     }
 
