@@ -1,3 +1,5 @@
+package Servlets;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +11,8 @@ public class Helper {
     public static User currentUser;
 
     boolean checkCredo (String user, String password) {
-// ti do
-        Stream correct = users.stream().filter(person -> person.getPassword().equals(password) && person.getLogin().equals(user));
+// to do
+        Stream correct = Helper.users.stream().filter(person -> person.getPassword().equals(password) && person.getLogin().equals(user));
         if(correct.count() == 1) {
             return true;
         } else {
@@ -19,7 +21,7 @@ public class Helper {
     }
 
     User getUserInfo(String login) {
-        Optional<User> userObject = users.stream().
+        Optional<User> userObject = Helper.users.stream().
                 filter(person -> person.getLogin().equals(login)).
                 findFirst();
         //null

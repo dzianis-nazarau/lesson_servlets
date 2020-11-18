@@ -1,3 +1,8 @@
+package Servlets;
+
+import purchase.Item;
+import purchase.Warehouses;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -21,6 +26,9 @@ public class Autorization extends HttpServlet {
         user.setGender("Male");
         user.setCountry("Belarus");
         Helper.users.add(user);
+
+        Warehouses.storeItemsList.add(new Item("apple", "fruit", 10));
+        Warehouses.storeItemsList.add(new Item("tomato", "vegetable", 5));
     }
 
     @Override
