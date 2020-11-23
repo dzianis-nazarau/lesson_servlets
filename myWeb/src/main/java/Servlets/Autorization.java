@@ -5,6 +5,7 @@ import purchase.Warehouses;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,7 @@ public class Autorization extends HttpServlet {
         user.setLogin("admin");
         user.setPassword("admin123");
         user.setUsername("SuperAdmin");
-        user.setUserage("25");
+        user.setUserAge("25");
         user.setGender("Male");
         user.setCountry("Belarus");
         Helper.users.add(user);
@@ -33,6 +34,10 @@ public class Autorization extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        ServletContext servletContext = req.getServletContext();
+        servletContext.setAttribute("warehouse", new Warehouses());
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/login.jsp");
         requestDispatcher.forward(req, resp);
     }

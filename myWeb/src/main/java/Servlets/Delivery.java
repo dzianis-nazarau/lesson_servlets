@@ -24,21 +24,22 @@ public class Delivery extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        User user = (User) req.getSession().getAttribute("currentUser");
         String delivery = req.getParameter("delivery");
+        StringBuilder builder = new StringBuilder("");
 
-        String orderDetails = "";
         Order order = new Order();
 
-        for(Item item : Helper.currentUser.getBasket()) {
-            orderDetails += item.toString();
+        for(Item item : user.getBasket()) {
+            builder.append("\n").append(item.getName()).append("-").append(item.getCount()).append(";");
         }
-        order.setDetails(orderDetails);
-        order.setDate(LocalDateTime.now().toString());
+
+        order.setDetails(builder.toString());
+        order.setDate(LocalDateTime.now());
         order.setDelivery(delivery);
 
-        Helper.currentUser.addOrder(order);
-
-        Helper.currentUser.getBasket().clear();
+        user.addOrder(order);
+        user.getBasket().clear();
 
         resp.sendRedirect("/myWeb_war/userPage");
 

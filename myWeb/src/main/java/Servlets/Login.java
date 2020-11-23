@@ -18,7 +18,7 @@ public class Login extends HttpServlet {
         String password = req.getParameter("Password");
 
         if(helper.checkCredo(username, password)) {
-            Helper.currentUser = helper.getUserInfo(username);
+            req.getSession().setAttribute("currentUser", helper.getUserInfo(username));
             resp.sendRedirect("/myWeb_war/userPage");
         } else {
             resp.sendRedirect("/myWeb_war/main");

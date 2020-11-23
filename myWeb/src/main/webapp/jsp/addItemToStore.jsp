@@ -21,5 +21,8 @@
     <br><br>
     <input type="submit" value="Add" />
 </form>
+
+<p><a href="http://localhost:8080/myWeb_war/userPage">Back</a></p>
+
 </body>
 </html>

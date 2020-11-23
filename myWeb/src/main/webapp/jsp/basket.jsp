@@ -1,6 +1,7 @@
 <%@ page import="purchase.Warehouses" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Servlets.Helper" %><%--
+<%@ page import="Servlets.Helper" %>
+<%@ page import="Servlets.User" %><%--
   Created by IntelliJ IDEA.
   Servlets.User: Servlets.User
   Date: 16.11.2020
@@ -11,6 +12,18 @@
 <html>
 <head>
     <title>MyWebApp</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+
+        }
+    </style>
 </head>
 <body>
 <table>
@@ -18,20 +31,22 @@
         <th>Name</th>
         <th>Description</th>
         <th>MyCount</th>
+        <th>Action</th>
     </tr>
 
     <%
-        for(int i = 0; i < Helper.currentUser.getBasket().size(); i++) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        for(int i = 0; i < currentUser.getBasket().size(); i++) {
     %>
 
     <tr>
-        <td><%= Helper.currentUser.getBasket().get(i).getName()%></td>
-        <td><%= Helper.currentUser.getBasket().get(i).getDescription()%></td>
-        <td><%= Helper.currentUser.getBasket().get(i).getCount()%></td>
+        <td><%= currentUser.getBasket().get(i).getName()%></td>
+        <td><%= currentUser.getBasket().get(i).getDescription()%></td>
+        <td><%= currentUser.getBasket().get(i).getCount()%></td>
         <td>
             <form action='basket' method='POST'>
-                <select name="item">
-                    <option><%= Helper.currentUser.getBasket().get(i).getName() %></option>
+                <select name="item" hidden="true">
+                    <option><%= currentUser.getBasket().get(i).getName() %></option>
                 </select>
                 <input type='submit' value='delete' />
             </form>

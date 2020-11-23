@@ -18,12 +18,14 @@ public class CreateItem extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Warehouses warehouses = (Warehouses) req.getServletContext().getAttribute("warehouse");
+
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         int count = parseInt(req.getParameter("count"));
 
-        Item item = new Item(name, description, count);
-        Warehouses.storeItemsList.add(item);
+        warehouses.addItem(new Item(name, description, count));
 
         resp.sendRedirect("/myWeb_war/userPage");
 

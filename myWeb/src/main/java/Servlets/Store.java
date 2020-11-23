@@ -26,7 +26,8 @@ public class Store extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Warehouses warehouses = new Warehouses();
+        Warehouses warehouses = (Warehouses) req.getServletContext().getAttribute("warehouse");
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
 
         int count = parseInt(req.getParameter("count"));
         String itemName = req.getParameter("item");
@@ -34,8 +35,7 @@ public class Store extends HttpServlet {
         Item item = warehouses.getItemInfo(itemName);
         item.setCount(item.getCount() - count);
 
-        Item newItem = new Item(item.getName(), item.getDescription(), count);
-        Helper.currentUser.addBasketItem(newItem);
+        currentUser.addBasketItem(new Item(item.getName(), item.getDescription(), count));
 
         resp.sendRedirect("/myWeb_war/store");
     }

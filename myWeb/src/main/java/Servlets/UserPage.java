@@ -13,15 +13,15 @@ public class UserPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String forwardPage;
-        String userLogin = Helper.currentUser.getLogin();
-        req.getSession().setAttribute("user", userLogin);
-        if (userLogin.equals("admin")) {
-            forwardPage = "/jsp/adminPage.jsp";
+
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
+        if (currentUser == null) {
+            resp.sendRedirect("/myWeb_war/main");
+        } else if (currentUser.getLogin().equals("admin")) {
+            req.getRequestDispatcher("/jsp/adminPage.jsp").forward(req, resp);
         } else {
-            forwardPage = "/jsp/userPage.jsp";
+            req.getRequestDispatcher("/jsp/userPage.jsp").forward(req, resp);
         }
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(forwardPage);
-        requestDispatcher.forward(req, resp);
+
     }
 }

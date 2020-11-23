@@ -4,7 +4,6 @@ import purchase.Item;
 import purchase.Order;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +12,7 @@ public class User {
     private String login;
     private String password;
     private String username;
-    private String userage;
+    private String userAge;
     private String gender;
     private String country;
     private List<Item> basket = new ArrayList<>();
@@ -36,7 +35,6 @@ public class User {
     }
 
     public void removeBasketItem(String name) {
-
         int index = -1;
         for (Item item: basket) {
             if (item.getName().equals(name)) {
@@ -50,10 +48,6 @@ public class User {
 
     public List<Item> getBasket() {
         return basket;
-    }
-
-    public void setBasket(ArrayList<Item> basket) {
-        this.basket = basket;
     }
 
     public String getLogin() {
@@ -80,12 +74,12 @@ public class User {
         this.username = username;
     }
 
-    public String getUserage() {
-        return userage;
+    public String getUserAge() {
+        return userAge;
     }
 
-    public void setUserage(String userage) {
-        this.userage = userage;
+    public void setUserAge(String userAge) {
+        this.userAge = userAge;
     }
 
     public String getGender() {

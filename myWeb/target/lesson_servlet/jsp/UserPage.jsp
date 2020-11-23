@@ -1,4 +1,4 @@
-<%--
+<%@ page import="Servlets.User" %><%--
   Created by IntelliJ IDEA.
   Servlets.User: Servlets.User
   Date: 15.11.2020
@@ -12,7 +12,8 @@
     <title>MyWebApp</title>
 </head>
 <body>
-    <h2>Welcome to your page, <%= session.getAttribute("user")%></h2>
+
+    <h2>Welcome to your page, <%= ((User) session.getAttribute("currentUser")).getLogin()%></h2>
 
     <p><a href="http://localhost:8080/myWeb_war/information">Information</a></p>
     <p><a href="http://localhost:8080/myWeb_war/store">Store</a></p>

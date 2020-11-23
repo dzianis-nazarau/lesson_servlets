@@ -9,6 +9,19 @@
 <html>
 <head>
     <title>MyWebApp</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body>
 <table>

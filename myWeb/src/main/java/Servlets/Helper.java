@@ -25,8 +25,7 @@ public class Helper {
                 filter(person -> person.getLogin().equals(login)).
                 findFirst();
         //null
-        User user = userObject.get();
-        return user;
+        return userObject.get();
     }
 
 }
