@@ -19,6 +19,7 @@ public class Registration extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String username = req.getParameter("username");
@@ -31,12 +32,14 @@ public class Registration extends HttpServlet {
         user.setPassword(password);
         user.setCountry(country);
         user.setGender(gender);
-        user.setUserage(userage);
+        user.setUserAge(userage);
         user.setUsername(username);
 
         Helper.users.add(user);
 
-        if (req.getSession().getAttribute("user") != null && req.getSession().getAttribute("user").equals("admin")) {
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
+
+        if (currentUser != null && currentUser.getLogin().equals("admin")) {
             resp.sendRedirect("/myWeb_war/userPage");
         } else {
             resp.sendRedirect("/myWeb_war/main");

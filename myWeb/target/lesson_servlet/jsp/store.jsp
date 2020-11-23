@@ -30,7 +30,7 @@
             <td>
                 <form action='store' method='POST'>
                     <input name="count" />
-                    <select name="item">
+                    <select name="item" hidden = "true">
                         <option><%= Warehouses.storeItemsList.get(i).getName()%></option>
                     </select>
                     <input type='submit' value='buy' />

@@ -13,10 +13,11 @@ public class Information extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = Helper.currentUser;
+
+        User user = (User) req.getSession().getAttribute("currentUser");
 
         req.setAttribute("username", user.getUsername());
-        req.setAttribute("userage", user.getUserage());
+        req.setAttribute("userage", user.getUserAge());
         req.setAttribute("usergender", user.getGender());
         req.setAttribute("usercountry", user.getCountry());
 

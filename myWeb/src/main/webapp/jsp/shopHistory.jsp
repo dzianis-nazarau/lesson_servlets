@@ -1,4 +1,5 @@
-<%@ page import="Servlets.Helper" %><%--
+<%@ page import="Servlets.Helper" %>
+<%@ page import="Servlets.User" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 17.11.2020
@@ -9,6 +10,19 @@
 <html>
 <head>
     <title>MyWebApp</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body>
 <table>
@@ -19,13 +33,14 @@
     </tr>
 
     <%
-        for(int i = 0; i < Helper.currentUser.getOrders().size(); i++) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        for(int i = 0; i < currentUser.getOrders().size(); i++) {
     %>
 
     <tr>
-        <td><%= Helper.currentUser.getOrders().get(i).getDate()%></td>
-        <td><%= Helper.currentUser.getOrders().get(i).getDetails()%></td>
-        <td><%= Helper.currentUser.getOrders().get(i).getDelivery()%></td>
+        <td><%= currentUser.getOrders().get(i).getFormattedDate()%></td>
+        <td><%= currentUser.getOrders().get(i).getDetails()%></td>
+        <td><%= currentUser.getOrders().get(i).getDelivery()%></td>
     </tr>
     <%
         }

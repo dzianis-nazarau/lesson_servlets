@@ -23,11 +23,13 @@ public class Basket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        Warehouses warehouses = new Warehouses();
-        String itemName = req.getParameter("item");
-        int count = Helper.currentUser.getItemInfo(itemName).getCount();
+        Warehouses warehouses = (Warehouses) req.getServletContext().getAttribute("warehouse");
+        User user = (User) req.getSession().getAttribute("currentUser");
 
-        Helper.currentUser.removeBasketItem(itemName);
+        String itemName = req.getParameter("item");
+        int count = user.getItemInfo(itemName).getCount();
+
+        user.removeBasketItem(itemName);
 
         Item item = warehouses.getItemInfo(itemName);
         item.setCount(item.getCount() + count);

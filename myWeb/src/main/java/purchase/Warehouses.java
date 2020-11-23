@@ -8,20 +8,8 @@ public class Warehouses {
 
     public static List<Item> storeItemsList = new ArrayList<>();
 
-    public List<Item> getStoreItemsList() {
-        return storeItemsList;
-    }
-
-    public void setStoreItemsList(List<Item> storeItemsList) {
-        Warehouses.storeItemsList = storeItemsList;
-    }
-
     public void addItem(Item item) {
-        Warehouses.storeItemsList.add(item);
-    }
-
-    public void removeItem(Item item) {
-        Warehouses.storeItemsList.remove(item);
+        storeItemsList.add(item);
     }
 
     public Item getItemInfo(String name) {
